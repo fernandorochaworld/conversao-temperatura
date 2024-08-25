@@ -112,21 +112,28 @@ k3d cluster delete
 
 
 #### Apply Manifest
-kubectl apply -f src/k8s/deployment.yaml
+
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/deployment.yaml && watch 'kubectl get pod'
 
 #### Delete Manifest
-kubectl delete -f src/k8s/deployment.yaml
+
+kubectl delete -f k8s/deployment.yaml
 
 #### List deployments
+
 kubectl get deployment
 
 #### List replicasets
+
 kubectl get replicaset
 
 #### List pods
+
 kubectl get pod
 
 #### List services
+
 kubectl get service
 
 #### Describe / Get Information
@@ -137,8 +144,18 @@ kubectl get service
     kubectl describe service \<service-name\>
 
 #### Kubctl Port-Forward
+
 kubectl port-forward pod/\<pod-name\> 8080:8080
 
 #### Delete Pod
+
 kubectl delete pod \<pod-name\>
 
+#### List Deployment History
+
+kubectl rollout history deployment temperature-converter
+
+
+#### Undo Deployment
+
+kubectl rollout undo deployment temperature-converter && watch 'kubectl get pods'
